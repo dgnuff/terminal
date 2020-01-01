@@ -705,11 +705,13 @@ namespace winrt::TerminalApp::implementation
     void TerminalPage::_UpdateTitle(const Tab& tab)
     {
         auto newTabTitle = tab.GetActiveTitle();
+        auto newWindowTitle = tab.GetActiveWindowTitle();
 
         if (_settings->GlobalSettings().GetShowTitleInTitlebar() &&
             tab.IsFocused())
         {
             _titleChangeHandlers(*this, newTabTitle);
+            _windowTitleChangeHandlers(*this, newWindowTitle);
         }
     }
 
@@ -1756,6 +1758,7 @@ namespace winrt::TerminalApp::implementation
     // Winrt events need a method for adding a callback to the event and removing the callback.
     // These macros will define them both for you.
     DEFINE_EVENT_WITH_TYPED_EVENT_HANDLER(TerminalPage, TitleChanged, _titleChangeHandlers, winrt::Windows::Foundation::IInspectable, winrt::hstring);
+    DEFINE_EVENT_WITH_TYPED_EVENT_HANDLER(TerminalPage, WindowTitleChanged, _windowTitleChangeHandlers, winrt::Windows::Foundation::IInspectable, winrt::hstring);
     DEFINE_EVENT_WITH_TYPED_EVENT_HANDLER(TerminalPage, LastTabClosed, _lastTabClosedHandlers, winrt::Windows::Foundation::IInspectable, winrt::TerminalApp::LastTabClosedEventArgs);
     DEFINE_EVENT_WITH_TYPED_EVENT_HANDLER(TerminalPage, SetTitleBarContent, _setTitleBarContentHandlers, winrt::Windows::Foundation::IInspectable, UIElement);
     DEFINE_EVENT_WITH_TYPED_EVENT_HANDLER(TerminalPage, ShowDialog, _showDialogHandlers, winrt::Windows::Foundation::IInspectable, WUX::Controls::ContentDialog);

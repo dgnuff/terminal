@@ -46,6 +46,7 @@ namespace winrt::TerminalApp::implementation
 
         void UpdateSettings(const winrt::Microsoft::Terminal::Settings::TerminalSettings& settings, const GUID& profile);
         winrt::hstring GetActiveTitle() const;
+        winrt::hstring GetActiveWindowTitle() const;
         winrt::fire_and_forget SetTabText(const winrt::hstring text);
 
         void Shutdown();

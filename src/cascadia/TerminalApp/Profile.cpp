@@ -26,6 +26,7 @@ static constexpr std::string_view BackgroundKey{ "background" };
 static constexpr std::string_view SelectionBackgroundKey{ "selectionBackground" };
 static constexpr std::string_view TabTitleKey{ "tabTitle" };
 static constexpr std::string_view SuppressApplicationTitleKey{ "suppressApplicationTitle" };
+static constexpr std::string_view SuppressApplicationTitleInTabKey{ "suppressApplicationTitleInTab" };
 static constexpr std::string_view HistorySizeKey{ "historySize" };
 static constexpr std::string_view SnapOnInputKey{ "snapOnInput" };
 static constexpr std::string_view CursorColorKey{ "cursorColor" };
@@ -105,6 +106,7 @@ Profile::Profile(const std::optional<GUID>& guid) :
     _cursorColor{},
     _tabTitle{},
     _suppressApplicationTitle{},
+    _suppressApplicationTitleInTab{},
     _historySize{ DEFAULT_HISTORY_SIZE },
     _snapOnInput{ true },
     _cursorShape{ CursorStyle::Bar },
@@ -197,6 +199,11 @@ TerminalSettings Profile::CreateTerminalSettings(const std::unordered_map<std::w
     if (_suppressApplicationTitle)
     {
         terminalSettings.SuppressApplicationTitle(_suppressApplicationTitle);
+    }
+
+    if (_suppressApplicationTitleInTab)
+    {
+        terminalSettings.SuppressApplicationTitleInTab(_suppressApplicationTitleInTab);
     }
 
     if (_schemeName)
@@ -340,6 +347,11 @@ Json::Value Profile::ToJson() const
     if (_suppressApplicationTitle)
     {
         root[JsonKey(SuppressApplicationTitleKey)] = _suppressApplicationTitle;
+    }
+
+    if (_suppressApplicationTitleInTab)
+    {
+        root[JsonKey(SuppressApplicationTitleInTabKey)] = _suppressApplicationTitleInTab;
     }
 
     if (_startingDirectory)
@@ -657,6 +669,8 @@ void Profile::LayerJson(const Json::Value& json)
 
     JsonUtils::GetBool(json, SuppressApplicationTitleKey, _suppressApplicationTitle);
 
+    JsonUtils::GetBool(json, SuppressApplicationTitleInTabKey, _suppressApplicationTitleInTab);
+
     if (json.isMember(JsonKey(CloseOnExitKey)))
     {
         auto closeOnExit{ json[JsonKey(CloseOnExitKey)] };
@@ -781,6 +795,15 @@ void Profile::SetSuppressApplicationTitle(bool suppressApplicationTitle) noexcep
     _suppressApplicationTitle = suppressApplicationTitle;
 }
 
+// Method Description
+// - Sets if the application title will be suppressed in this profile, for the tab
+// Arguments:
+// - suppressApplicationTitleInTab: boolean
+void Profile::SetSuppressApplicationTitleInTab(bool suppressApplicationTitleInTab)noexcept
+{
+    _suppressApplicationTitleInTab = suppressApplicationTitleInTab;
+}
+
 // Method Description:
 // - Sets this profile's icon path.
 // Arguments:
@@ -854,6 +877,11 @@ std::wstring_view Profile::GetName() const noexcept
 bool Profile::GetSuppressApplicationTitle() const noexcept
 {
     return _suppressApplicationTitle;
+}
+
+bool Profile::GetSuppressApplicationTitleInTab() const noexcept
+{
+    return _suppressApplicationTitleInTab;
 }
 
 bool Profile::HasConnectionType() const noexcept

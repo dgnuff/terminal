@@ -408,7 +408,8 @@ CATCH_LOG_RETURN_FALSE()
 bool Terminal::SetWindowTitle(std::wstring_view title) noexcept
 try
 {
-    _title = _suppressApplicationTitle ? _startingTitle : title;
+    _title = _suppressApplicationTitle || _suppressApplicationTitleInTab ? _startingTitle : title;
+    _windowTitle = _suppressApplicationTitle ? _startingTitle : title;
 
     _pfnTitleChanged(_title);
 

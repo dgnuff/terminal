@@ -31,6 +31,7 @@ namespace Microsoft.Terminal.Settings
         UInt32 CursorHeight;
         String StartingTitle;
         Boolean SuppressApplicationTitle;
+        Boolean SuppressApplicationTitleInTab;
         String WordDelimiters;
     };
 

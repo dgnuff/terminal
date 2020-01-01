@@ -36,6 +36,7 @@ namespace TerminalCoreUnitTests
         bool CopyOnSelect() { return _copyOnSelect; }
         winrt::hstring StartingTitle() { return _startingTitle; }
         bool SuppressApplicationTitle() { return _suppressApplicationTitle; }
+        bool SuppressApplicationTitleInTab() { return _suppressApplicationTitleInTab; }
         uint32_t SelectionBackground() { return COLOR_WHITE; }
 
         // other implemented methods
@@ -56,6 +57,7 @@ namespace TerminalCoreUnitTests
         void CopyOnSelect(bool copyOnSelect) { _copyOnSelect = copyOnSelect; }
         void StartingTitle(winrt::hstring const& value) { _startingTitle = value; }
         void SuppressApplicationTitle(bool suppressApplicationTitle) { _suppressApplicationTitle = suppressApplicationTitle; }
+        void SuppressApplicationTitleInTab(bool suppressApplicationTitleInTab) { _suppressApplicationTitleInTab = suppressApplicationTitleInTab; }
         void SelectionBackground(uint32_t) {}
 
         // other unimplemented methods
@@ -67,6 +69,7 @@ namespace TerminalCoreUnitTests
         int32_t _initialCols;
         bool _copyOnSelect{ false };
         bool _suppressApplicationTitle{ false };
+        bool _suppressApplicationTitleInTab{ false };
         winrt::hstring _startingTitle;
     };
 }

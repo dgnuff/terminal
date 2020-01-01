@@ -209,6 +209,19 @@ namespace winrt::TerminalApp::implementation
     }
 
     // Method Description:
+    // - Gets the window title string of the last focused terminal control in our tree.
+    //   Returns the empty string if there is no such control.
+    // Arguments:
+    // - <none>
+    // Return Value:
+    // - the title string of the last focused terminal control in our tree.
+    winrt::hstring Tab::GetActiveWindowTitle() const
+    {
+        const auto lastFocusedControl = GetActiveTerminalControl();
+        return lastFocusedControl ? lastFocusedControl.WindowTitle() : L"";
+    }
+
+    // Method Description:
     // - Set the text on the TabViewItem for this tab.
     // Arguments:
     // - text: The new text string to use as the Header for our TabViewItem

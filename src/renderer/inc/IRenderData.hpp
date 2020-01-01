@@ -66,6 +66,7 @@ namespace Microsoft::Console::Render
 
         virtual const bool IsGridLineDrawingAllowed() noexcept = 0;
         virtual const std::wstring GetConsoleTitle() const noexcept = 0;
+        virtual const std::wstring GetConsoleWindowTitle() const noexcept = 0;
 
     protected:
         IRenderData() = default;

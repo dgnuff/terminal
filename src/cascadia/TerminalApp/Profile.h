@@ -76,6 +76,7 @@ public:
     std::optional<std::wstring>& GetSchemeName() noexcept;
     void SetTabTitle(std::wstring tabTitle) noexcept;
     void SetSuppressApplicationTitle(bool suppressApplicationTitle) noexcept;
+    void SetSuppressApplicationTitleInTab(bool suppressApplicationTitleInTab) noexcept;
     void SetAcrylicOpacity(double opacity) noexcept;
     void SetCommandline(std::wstring cmdline) noexcept;
     void SetStartingDirectory(std::wstring startingDirectory) noexcept;
@@ -98,6 +99,7 @@ public:
 
     CloseOnExitMode GetCloseOnExitMode() const noexcept;
     bool GetSuppressApplicationTitle() const noexcept;
+    bool GetSuppressApplicationTitleInTab() const noexcept;
     bool IsHidden() const noexcept;
 
     void GenerateGuidIfNecessary() noexcept;
@@ -145,6 +147,7 @@ private:
     std::optional<uint32_t> _cursorColor;
     std::optional<std::wstring> _tabTitle;
     bool _suppressApplicationTitle;
+    bool _suppressApplicationTitleInTab;
     int32_t _historySize;
     bool _snapOnInput;
     uint32_t _cursorHeight;

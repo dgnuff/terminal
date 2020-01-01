@@ -53,6 +53,7 @@ namespace Microsoft.Terminal.TerminalControl
         Microsoft.Terminal.TerminalConnection.ConnectionState ConnectionState { get; };
 
         String Title { get; };
+        String WindowTitle { get; };
 
         Boolean CopySelectionToClipboard(Boolean collapseText);
         void PasteTextFromClipboard();

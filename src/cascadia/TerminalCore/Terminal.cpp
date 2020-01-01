@@ -38,6 +38,7 @@ static std::wstring _KeyEventsToText(std::deque<std::unique_ptr<IInputEvent>>& i
 Terminal::Terminal() :
     _mutableViewport{ Viewport::Empty() },
     _title{},
+    _windowTitle{ L"" },
     _colorTable{},
     _defaultFg{ RGB(255, 255, 255) },
     _defaultBg{ ARGB(0, 0, 0, 0) },
@@ -93,9 +94,13 @@ void Terminal::CreateFromSettings(winrt::Microsoft::Terminal::Settings::ICoreSet
 
     UpdateSettings(settings);
 
-    if (_suppressApplicationTitle)
+    if (_suppressApplicationTitle || _suppressApplicationTitleInTab)
     {
         _title = _startingTitle;
+    }
+    if (_suppressApplicationTitle)
+    {
+        _windowTitle  = _startingTitle;
     }
 }
 
@@ -144,6 +149,8 @@ void Terminal::UpdateSettings(winrt::Microsoft::Terminal::Settings::ICoreSetting
     _wordDelimiters = settings.WordDelimiters();
 
     _suppressApplicationTitle = settings.SuppressApplicationTitle();
+
+    _suppressApplicationTitleInTab = settings.SuppressApplicationTitleInTab();
 
     _startingTitle = settings.StartingTitle();
 

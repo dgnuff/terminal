@@ -189,6 +189,17 @@ catch (...)
     return {};
 }
 
+const std::wstring Terminal::GetConsoleWindowTitle() const noexcept
+try
+{
+    return _windowTitle;
+}
+catch (...)
+{
+    LOG_CAUGHT_EXCEPTION();
+    return {};
+}
+
 // Method Description:
 // - Lock the terminal for reading the contents of the buffer. Ensures that the
 //      contents of the terminal won't be changed in the middle of a paint

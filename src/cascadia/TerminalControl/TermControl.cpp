@@ -1897,10 +1897,19 @@ namespace winrt::Microsoft::Terminal::TerminalControl::implementation
         return hstr;
     }
 
+    hstring TermControl::WindowTitle()
+    {
+        if (!_initializedTerminal)
+            return L"";
+
+        hstring hstr(_terminal->GetConsoleWindowTitle());
+        return hstr;
+    }
+
     hstring TermControl::GetProfileName() const
     {
         return _settings.ProfileName();
-    }
+	}
 
     // Method Description:
     // - Given a copy-able selection, get the selected text from the buffer and send it to the

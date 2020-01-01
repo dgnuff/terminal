@@ -163,6 +163,7 @@ public:
     const COORD GetSelectionAnchor() const noexcept override;
     const COORD GetSelectionEnd() const noexcept override;
     const std::wstring GetConsoleTitle() const noexcept override;
+    const std::wstring GetConsoleWindowTitle() const noexcept override;
     void ColorSelection(const COORD coordSelectionStart, const COORD coordSelectionEnd, const TextAttribute) override;
 #pragma endregion
 
@@ -202,6 +203,7 @@ private:
     std::unique_ptr<::Microsoft::Console::VirtualTerminal::TerminalInput> _terminalInput;
 
     std::wstring _title;
+    std::wstring _windowTitle;
     std::wstring _startingTitle;
 
     std::array<COLORREF, XTERM_COLOR_TABLE_SIZE> _colorTable;
@@ -210,6 +212,7 @@ private:
 
     bool _snapOnInput;
     bool _suppressApplicationTitle;
+    bool _suppressApplicationTitleInTab;
 
 #pragma region Text Selection
     // a selection is represented as a range between two COORDs (start and end)

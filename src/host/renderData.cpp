@@ -315,10 +315,19 @@ const bool RenderData::IsGridLineDrawingAllowed() noexcept
 }
 
 // Routine Description:
-// - Retrieves the title information to be displayed in the frame/edge of the window
+// - Retrieves the title information to be displayed in the tab of the current pane
 // Return Value:
 // - String with title information
 const std::wstring RenderData::GetConsoleTitle() const noexcept
+{
+    const CONSOLE_INFORMATION& gci = ServiceLocator::LocateGlobals().getConsoleInformation();
+    return gci.GetTitleAndPrefix();
+}
+
+// - Retrieves the title information to be displayed in the frame/edge of the window
+// Return Value:
+// - String with title information
+const std::wstring RenderData::GetConsoleWindowTitle() const noexcept
 {
     const CONSOLE_INFORMATION& gci = ServiceLocator::LocateGlobals().getConsoleInformation();
     return gci.GetTitleAndPrefix();

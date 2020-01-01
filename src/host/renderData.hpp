@@ -56,6 +56,7 @@ public:
     const bool IsGridLineDrawingAllowed() noexcept override;
 
     const std::wstring GetConsoleTitle() const noexcept override;
+    const std::wstring GetConsoleWindowTitle() const noexcept override;
 #pragma endregion
 
 #pragma region IUiaData

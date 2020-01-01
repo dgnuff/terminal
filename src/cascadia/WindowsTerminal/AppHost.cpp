@@ -157,7 +157,7 @@ void AppHost::Initialize()
 
     _logic.Create();
 
-    _logic.TitleChanged({ this, &AppHost::AppTitleChanged });
+    _logic.WindowTitleChanged({ this, &AppHost::AppTitleChanged });
     _logic.LastTabClosed({ this, &AppHost::LastTabClosed });
 
     _window->UpdateTitle(_logic.Title());

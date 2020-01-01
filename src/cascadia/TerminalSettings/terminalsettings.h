@@ -95,6 +95,9 @@ namespace winrt::Microsoft::Terminal::Settings::implementation
         bool SuppressApplicationTitle() noexcept;
         void SuppressApplicationTitle(bool value) noexcept;
 
+        bool SuppressApplicationTitleInTab();
+        void SuppressApplicationTitleInTab(bool value);
+
         hstring EnvironmentVariables();
         void EnvironmentVariables(hstring const& value);
 
@@ -138,6 +141,7 @@ namespace winrt::Microsoft::Terminal::Settings::implementation
         hstring _startingDir;
         hstring _startingTitle;
         bool _suppressApplicationTitle;
+        bool _suppressApplicationTitleInTab;
         hstring _envVars;
         Settings::IKeyBindings _keyBindings;
         Settings::ScrollbarState _scrollbarState;
